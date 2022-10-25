@@ -14,10 +14,7 @@ public class Usuario {
 
     private String contrasena;
 
-    public Long getId() {
-        return id;
-    }
-
+    
     @OneToOne(mappedBy = "usuario")
     private Persona persona;
 }
