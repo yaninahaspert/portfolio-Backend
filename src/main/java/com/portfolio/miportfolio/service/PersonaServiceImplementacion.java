@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+
 @Service
-public class PersonaServiceImplementacion implements IPersonaService{
+public class PersonaServiceImplementacion implements IPersonaService {
     @Autowired
     private IPersonaRepository personaRepository;
 
@@ -19,18 +20,18 @@ public class PersonaServiceImplementacion implements IPersonaService{
     @Override
     @Transactional
     public List<Persona> findAll() {
-        return (List <Persona>) personaRepository.findAll();
+        return (List<Persona>) personaRepository.findAll();
     }
 
     @Override
     @Transactional
-    public Persona findById (Long id){
+    public Persona findById(Long id) {
         return personaRepository.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
-    public Persona save (Persona persona){
+    public Persona save(Persona persona) {
         var usuario = this.usuarioRepository.findTopByOrderByIdAsc();
 
         persona.setUsuario(usuario);
@@ -40,7 +41,7 @@ public class PersonaServiceImplementacion implements IPersonaService{
 
     @Override
     @Transactional
-    public void delete(Long id){
+    public void delete(Long id) {
         personaRepository.deleteById(id);
     }
 

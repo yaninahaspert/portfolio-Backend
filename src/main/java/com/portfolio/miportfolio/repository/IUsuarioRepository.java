@@ -1,8 +1,17 @@
 package com.portfolio.miportfolio.repository;
 
 import com.portfolio.miportfolio.entity.Usuario;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IUsuarioRepository extends CrudRepository<Usuario, Long> {
+import java.util.Optional;
+
+public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
+    Optional<Usuario> findByNombreUsuario(String usuario);
+
     public Usuario findTopByOrderByIdAsc();
+
+    Boolean existsByNombreUsuario(String usuario);
+    Boolean existsByEmail (String email);
+
+
 }
