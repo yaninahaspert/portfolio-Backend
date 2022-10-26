@@ -5,9 +5,6 @@ import javax.validation.constraints.NotNull;
 
 import com.portfolio.miportfolio.security.RolNombre;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Entity
 @Table(name = "roles")
 public class Rol {

@@ -14,12 +14,12 @@ import java.io.IOException;
 
 @Component
 public class JwtEntryPoint implements AuthenticationEntryPoint {
-    private final static Logger logger= (Logger) LoggerFactory.getLogger(JwtEntryPoint.class);
+    private final static Logger logger = LoggerFactory.getLogger(JwtEntryPoint.class);
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-    logger.error("Fallo el metodo comence");
-    response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+        logger.error("Fallo el metodo comence");
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
     }
 }
 

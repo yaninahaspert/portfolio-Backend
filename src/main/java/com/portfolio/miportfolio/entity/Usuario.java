@@ -3,7 +3,9 @@ package com.portfolio.miportfolio.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,8 +34,8 @@ public class Usuario implements Serializable {
     //relacion tabla rol
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     //union de las dos tablas
-    //@JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "id_usuarios"), inverseJoinColumns = @JoinColumn(name = "id_roles"))
-    private Set<Rol> roles = new HashSet<>();
+    @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "id_usuarios", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_roles", referencedColumnName = "id"))
+    private List<Rol> roles = new ArrayList<>();
 
     //constructor vacio
     public Usuario() {
@@ -97,12 +99,12 @@ public class Usuario implements Serializable {
         this.persona = persona;
     }
 
-    public Set<Rol> getRoles() {
+    public List<Rol> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Rol> roles) {
-        this.roles = roles;
+    public void addRole(Rol rol) {
+        this.roles.add(rol);
     }
 
     private static final long serialVersion = 1L;

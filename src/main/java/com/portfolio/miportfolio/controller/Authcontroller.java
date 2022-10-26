@@ -54,11 +54,14 @@ public class Authcontroller {
             return new ResponseEntity(new Mensaje("este email ya existe"), HttpStatus.BAD_REQUEST);
         }
 
-        Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(),
-                nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
+        Usuario usuario = new Usuario(
+                nuevoUsuario.getNombre(),
+                nuevoUsuario.getNombreUsuario(),
+                nuevoUsuario.getEmail(),
+                passwordEncoder.encode(nuevoUsuario.getPassword())
+        );
 
-        Set<Rol> roles = new HashSet<>();
-        roles.add(rolService.getByRolNombre(RolNombre.ROL_USER).get());
+        usuario.addRole(rolService.getByRolNombre(RolNombre.ROL_USER).get());
 
         usuarioService.save(usuario);
 
@@ -67,8 +70,9 @@ public class Authcontroller {
 
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
             return new ResponseEntity(new Mensaje("campos mal puestos"), HttpStatus.BAD_REQUEST);
+        }
 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
