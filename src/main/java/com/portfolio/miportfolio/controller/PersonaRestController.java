@@ -5,14 +5,9 @@ import com.portfolio.miportfolio.repository.IPersonaRepository;
 import com.portfolio.miportfolio.service.IPersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.*;
 
-//@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
 public class PersonaRestController {
@@ -21,17 +16,17 @@ public class PersonaRestController {
 
     @Autowired
     private IPersonaRepository personaRepository;
-    @PreAuthorize("hasRole('USER')")
+
     @GetMapping("/personas")
     public List<Persona> index() {
         return personaService.findAll();
     }
-    @PreAuthorize("hasRole('USER')")
+
     @GetMapping("/personas/{id}")
     public Persona show(@PathVariable Long id) {
         return personaService.findById(id);
     }
-@PreAuthorize("hasRole('USER')")
+
     @PostMapping("/personas")
     @ResponseStatus(HttpStatus.CREATED)
     public Persona create(@RequestBody Persona personaDTO) {
@@ -50,7 +45,7 @@ public class PersonaRestController {
 
         return personaService.save(personaAGuardar);
     }
-    @PreAuthorize("hasRole('USER')")
+
     @PutMapping("/personas/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Persona update(@RequestBody Persona persona, @PathVariable Long id) {
@@ -63,10 +58,9 @@ public class PersonaRestController {
 
         return personaService.save(personaActual);
     }
-    @PreAuthorize("hasRole('USER')")
+
     @DeleteMapping("/personas/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-
     public void delete(@PathVariable Long id) {
         personaService.delete(id);
     }
