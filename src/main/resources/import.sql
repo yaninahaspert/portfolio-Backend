@@ -1,1 +1,1 @@
-INSERT INTO personas VALUES ("2","YANINA", "HASPERT","yanina","yanina","yanina","yanina", "yanina","1");
+INSERT INTO estudios VALUES ("1","YANINA","YANINA","YANINA","YANINA","YANINA","YANINA","YANINA","2010-10-10","22010-10-10","1");
