@@ -1,9 +1,10 @@
 package com.portfolio.miportfolio.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "personas")
@@ -34,6 +35,19 @@ public class Persona implements Serializable {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuarios", referencedColumnName = "id", nullable = false)
     private Usuario usuario;
+
+    @OneToMany(mappedBy = "persona")
+    private List<Estudios> listaEstudios;
+
+    @OneToMany(mappedBy = "persona")
+    private List<HardSkill> listaHardSkill;
+
+    @OneToMany(mappedBy = "persona")
+    private List<SoftSkill> listaSoftSkill;
+
+    @OneToMany(mappedBy = "persona")
+    private List<Experiencia> listaExperiencia;
+
 
     public Long getId() {
         return id;
@@ -93,6 +107,40 @@ public class Persona implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    //public List<Estudios> getListaEstudios() {
+    //    return listaEstudios;
+   // }
+
+   // public List<HardSkill> getListaHardSkill() {
+    //    return listaHardSkill;
+    //}
+
+
+   // public List<SoftSkill> getListaSoftSkill() {
+    //    return listaSoftSkill;
+   // }
+
+
+   // public List<Experiencia> getListaExperiencia() {
+    //    return listaExperiencia;
+    //}
+
+    public void setListaExperiencia(List<Experiencia> listaExperiencia) {
+        this.listaExperiencia = listaExperiencia;
+    }
+
+    public void setListaSoftSkill(List<SoftSkill> listaSoftSkill) {
+        this.listaSoftSkill = listaSoftSkill;
+    }
+
+    public void setListaEstudios(List<Estudios> listaEstudios) {
+        this.listaEstudios = listaEstudios;
+    }
+
+    public void setListaHardSkill(List<HardSkill> listaHardSkill) {
+        this.listaHardSkill = listaHardSkill;
     }
 
     private static final long serialVersion = 1L;

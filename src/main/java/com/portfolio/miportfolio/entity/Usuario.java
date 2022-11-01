@@ -14,25 +14,28 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(unique = true)
     @NotNull
     private String nombre;
+
     @NotNull
     @Column(name = "usuario")
     private String nombreUsuario;
+
     @NotNull
     private String email;
+
     @NotNull
     @Column(name = "contrasena")
     private String password;
-
 
     //relacion tabla persona
     @OneToOne(mappedBy = "usuario")
     private Persona persona;
 
     //relacion tabla rol
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     //union de las dos tablas
     @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "id_usuarios", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_roles", referencedColumnName = "id"))
     private List<Rol> roles = new ArrayList<>();
