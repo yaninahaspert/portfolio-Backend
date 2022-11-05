@@ -21,6 +21,9 @@ public class Experiencia implements Serializable {
     private String funciones;
 
     private String puesto;
+    
+    @Column(name = "url_logo")
+    private String urlLogo;
 
     @Column(name= "es_trabajo_actual", nullable = false, columnDefinition = "TINYINT(1)")
     private boolean esTrabajoActual;

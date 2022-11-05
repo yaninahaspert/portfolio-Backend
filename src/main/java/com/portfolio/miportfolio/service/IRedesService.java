@@ -1,6 +1,5 @@
 package com.portfolio.miportfolio.service;
 
-import com.portfolio.miportfolio.entity.Estudios;
 import com.portfolio.miportfolio.entity.Redes;
 
 import javax.transaction.Transactional;

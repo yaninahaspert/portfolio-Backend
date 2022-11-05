@@ -3,7 +3,6 @@ package com.portfolio.miportfolio.entity;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -37,7 +36,7 @@ public class Persona implements Serializable {
     private Usuario usuario;
 
     @OneToMany(mappedBy = "persona")
-    private List<Estudios> listaEstudios;
+    private List<Estudio> listaEstudios;
 
     @OneToMany(mappedBy = "persona")
     private List<HardSkill> listaHardSkill;
@@ -135,7 +134,7 @@ public class Persona implements Serializable {
         this.listaSoftSkill = listaSoftSkill;
     }
 
-    public void setListaEstudios(List<Estudios> listaEstudios) {
+    public void setListaEstudios(List<Estudio> listaEstudios) {
         this.listaEstudios = listaEstudios;
     }
 

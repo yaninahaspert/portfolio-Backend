@@ -1,8 +1,6 @@
 package com.portfolio.miportfolio.controller;
 
-import com.portfolio.miportfolio.entity.Estudios;
 import com.portfolio.miportfolio.entity.Redes;
-import com.portfolio.miportfolio.service.IEstudiosService;
 import com.portfolio.miportfolio.service.IRedesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

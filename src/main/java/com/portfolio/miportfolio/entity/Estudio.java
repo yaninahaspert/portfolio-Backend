@@ -1,14 +1,12 @@
 package com.portfolio.miportfolio.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "estudios")
-public class Estudios implements Serializable {
+public class Estudio implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,9 +29,7 @@ public class Estudios implements Serializable {
     @Column(name = "sitio_web")
     private String sitioWeb;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "ano_inicio")
-    private Date anoInicio;
+    private String duracion;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "ano_fin")
@@ -99,12 +95,12 @@ public class Estudios implements Serializable {
         this.sitioWeb = sitioWeb;
     }
 
-    public Date getAnoInicio() {
-        return anoInicio;
+    public String getDuracion() {
+        return duracion;
     }
 
-    public void setAnoInicio(Date anoInicio) {
-        this.anoInicio = anoInicio;
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
     }
 
     public Date getAnoFin() {
