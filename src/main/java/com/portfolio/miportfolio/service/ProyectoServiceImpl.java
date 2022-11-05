@@ -1,8 +1,7 @@
 package com.portfolio.miportfolio.service;
 
-import com.portfolio.miportfolio.entity.Estudios;
+import com.portfolio.miportfolio.entity.Estudio;
 import com.portfolio.miportfolio.entity.Proyecto;
-import com.portfolio.miportfolio.repository.IEstudiosRepository;
 import com.portfolio.miportfolio.repository.IProyectoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,5 +18,22 @@ public class ProyectoServiceImpl implements IProyectoService{
         @Transactional
         public List<Proyecto> findAll() {
             return (List<Proyecto>) proyectoRepository.findAll();
+        }
+        @Override
+        @Transactional
+        public Proyecto findById(Long id) {
+                return proyectoRepository.findById(id).orElse(null);
+        }
+
+        @Override
+        @Transactional
+        public Proyecto save(Proyecto proyecto) {
+                return proyectoRepository.save(proyecto);
+        }
+
+        @Override
+        @Transactional
+        public void delete(Long id) {
+                proyectoRepository.deleteById(id);
         }
 }

@@ -1,6 +1,5 @@
 package com.portfolio.miportfolio.repository;
 
-import com.portfolio.miportfolio.entity.Estudios;
 import com.portfolio.miportfolio.entity.Redes;
 import org.springframework.data.repository.CrudRepository;
 

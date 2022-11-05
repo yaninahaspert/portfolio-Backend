@@ -1,13 +1,10 @@
 package com.portfolio.miportfolio.controller;
 
-import com.portfolio.miportfolio.entity.Estudios;
 import com.portfolio.miportfolio.entity.Proyecto;
-import com.portfolio.miportfolio.service.IEstudiosService;
 import com.portfolio.miportfolio.service.IProyectoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +17,37 @@ public class ProyectoRestController {
     @GetMapping("/proyectos")
     public List<Proyecto> index() {
         return proyectoService.findAll();
+    }
+
+    @GetMapping("/proyectos/{id}")
+    public Proyecto show(@PathVariable Long id) {
+        return proyectoService.findById(id);
+    }
+
+    @PostMapping("/proyectos")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Proyecto create(@RequestBody Proyecto proyecto) {
+        return proyectoService.save(proyecto);
+    }
+
+    @PutMapping("/proyectos/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Proyecto update(@RequestBody Proyecto proyecto, @PathVariable Long id) {
+
+        Proyecto proyectoActual = proyectoService.findById(id);
+
+        proyectoActual.setNombre(proyecto.getNombre());
+        proyectoActual.setDescripcion(proyecto.getDescripcion());
+        proyectoActual.setUrl(proyecto.getUrl());
+        proyectoActual.setUrlImagen(proyecto.getUrlImagen());
+
+        return proyectoService.save(proyectoActual);
+    }
+
+    @DeleteMapping("/proyectos/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        proyectoService.delete(id);
     }
 
 }
