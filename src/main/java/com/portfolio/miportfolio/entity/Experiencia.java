@@ -1,5 +1,7 @@
 package com.portfolio.miportfolio.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -14,8 +16,10 @@ public class Experiencia implements Serializable {
 
     private String empresa;
 
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date inicio;
 
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date fin;
 
     private String funciones;
@@ -87,6 +91,23 @@ public class Experiencia implements Serializable {
     public void setEsTrabajoActual(Boolean esTrabajoActual) {
         this.esTrabajoActual = esTrabajoActual;
     }
+
+    public String getUrlLogo() {
+        return urlLogo;
+    }
+
+    public void setUrlLogo(String urlLogo) {
+        this.urlLogo = urlLogo;
+    }
+
+    public boolean isEsTrabajoActual() {
+        return esTrabajoActual;
+    }
+
+    public void setEsTrabajoActual(boolean esTrabajoActual) {
+        this.esTrabajoActual = esTrabajoActual;
+    }
+
     private static final long serialVersion = 1L;
 
 }
