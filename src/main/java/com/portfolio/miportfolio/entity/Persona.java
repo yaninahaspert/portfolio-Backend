@@ -47,6 +47,9 @@ public class Persona implements Serializable {
     @OneToMany(mappedBy = "persona")
     private List<Experiencia> listaExperiencia;
 
+    @OneToMany(mappedBy = "persona")
+    private List<Redes> listaRedes;
+
 
     public Long getId() {
         return id;
@@ -108,23 +111,10 @@ public class Persona implements Serializable {
         this.usuario = usuario;
     }
 
-    //public List<Estudios> getListaEstudios() {
-    //    return listaEstudios;
-   // }
 
-   // public List<HardSkill> getListaHardSkill() {
-    //    return listaHardSkill;
-    //}
-
-
-   // public List<SoftSkill> getListaSoftSkill() {
-    //    return listaSoftSkill;
-   // }
-
-
-   // public List<Experiencia> getListaExperiencia() {
-    //    return listaExperiencia;
-    //}
+    public void setListaRedes(List<Redes> listaRedes) {
+        this.listaRedes = listaRedes;
+    }
 
     public void setListaExperiencia(List<Experiencia> listaExperiencia) {
         this.listaExperiencia = listaExperiencia;

@@ -18,5 +18,21 @@ public class RedesReviceImpl implements IRedesService{
     public List<Redes> findAll() {
         return (List<Redes>) redesRepository.findAll();
     }
+    @Override
+    @Transactional
+    public Redes findById(Long id) {
+        return redesRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    @Transactional
+    public Redes save(Redes redes) {
+        return redesRepository.save(redes);
+    }
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        redesRepository.deleteById(id);
+    }
 }
 
