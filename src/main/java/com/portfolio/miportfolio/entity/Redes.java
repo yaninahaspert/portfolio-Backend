@@ -12,7 +12,7 @@ public class Redes implements Serializable {
     private Long id;
 
     @Column (name="nombre_red_social")
-    private String nombreRedSocila;
+    private String nombreRedSocial;
 
     @Column (name="url_red_social")
     private String urlRedSocial;
@@ -29,12 +29,13 @@ public class Redes implements Serializable {
         this.id = id;
     }
 
-    public String getNombreRedSocila() {
-        return nombreRedSocila;
+
+    public String getNombreRedSocial() {
+        return nombreRedSocial;
     }
 
-    public void setNombreRedSocila(String nombreRedSocila) {
-        this.nombreRedSocila = nombreRedSocila;
+    public void setNombreRedSocial(String nombreRedSocial) {
+        this.nombreRedSocial = nombreRedSocial;
     }
 
     public String getUrlRedSocial() {
