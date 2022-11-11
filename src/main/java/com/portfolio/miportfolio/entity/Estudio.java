@@ -119,6 +119,10 @@ public class Estudio implements Serializable {
         this.ciudad = ciudad;
     }
 
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
     private static final long serialVersion = 1L;
 
 }

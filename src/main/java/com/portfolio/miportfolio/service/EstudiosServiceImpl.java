@@ -1,8 +1,11 @@
 package com.portfolio.miportfolio.service;
 import com.portfolio.miportfolio.entity.Estudio;
+import com.portfolio.miportfolio.entity.UsuarioPrincipal;
 import com.portfolio.miportfolio.repository.IEstudiosRepository;
 import com.portfolio.miportfolio.repository.IPersonaRepository;
+import com.portfolio.miportfolio.repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,6 +18,9 @@ public class EstudiosServiceImpl implements IEstudiosService {
 
     @Autowired
     private IEstudiosRepository estudiosRepository;
+
+    @Autowired
+    private IUsuarioRepository usuarioRepository;
 
     @Override
     @Transactional
@@ -38,6 +44,12 @@ public class EstudiosServiceImpl implements IEstudiosService {
     @Override
     @Transactional
     public Estudio save(Estudio estudio) {
+        var usuarioLogueado = (UsuarioPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        var usuario = this.usuarioRepository.findByNombreUsuario(usuarioLogueado.getUsername()).get();
+
+        estudio.setPersona(usuario.getPersona());
+
         return estudiosRepository.save(estudio);
     }
 
