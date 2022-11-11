@@ -28,8 +28,8 @@ CREATE TABLE estudios (
                           ciudad varchar(100),
                           sitio_web varchar(100),
                           ano_inicio date NOT NULL,
-                          ano_fin date,
-                          id_persona int
+                          ano_fin date NOT NULL,
+                          id_persona int NOT NULL
 );
 ALTER table estudios add constraint fk_id_estudios foreign key (id_persona)
     REFERENCES personas(id);
