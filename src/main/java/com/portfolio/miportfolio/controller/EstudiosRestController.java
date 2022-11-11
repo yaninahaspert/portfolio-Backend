@@ -1,7 +1,6 @@
 package com.portfolio.miportfolio.controller;
 
 import com.portfolio.miportfolio.entity.Estudio;
-import com.portfolio.miportfolio.entity.Persona;
 import com.portfolio.miportfolio.service.IEstudiosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,7 @@ public class EstudiosRestController {
 
     @GetMapping("/estudios")
     public List<Estudio> index(@RequestParam(name = "id_usuario", required = true) String idUsuario) {
-        return estudiosService.findAll();
+        return estudiosService.findByIdUsuario(Long.parseLong(idUsuario));
     }
 
     @GetMapping("/estudios/{id}")

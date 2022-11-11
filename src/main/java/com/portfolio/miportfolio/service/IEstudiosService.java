@@ -1,7 +1,6 @@
 package com.portfolio.miportfolio.service;
 
 import com.portfolio.miportfolio.entity.Estudio;
-import com.portfolio.miportfolio.entity.Persona;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -9,6 +8,9 @@ import java.util.List;
 public interface IEstudiosService {
     @Transactional
     public List<Estudio> findAll();
+
+    @Transactional
+    public List<Estudio> findByIdUsuario(Long idUsuario);
 
     public Estudio findById(Long id);
 
