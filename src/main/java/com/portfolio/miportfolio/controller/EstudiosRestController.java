@@ -16,7 +16,7 @@ public class EstudiosRestController {
     private IEstudiosService estudiosService;
 
     @GetMapping("/estudios")
-    public List<Estudio> index() {
+    public List<Estudio> index(@RequestParam(name = "id_usuario", required = true) String idUsuario) {
         return estudiosService.findAll();
     }
 
