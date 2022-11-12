@@ -1,12 +1,11 @@
 package com.portfolio.miportfolio.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "usuarios")
@@ -94,6 +93,7 @@ public class Usuario implements Serializable {
         this.password = password;
     }
 
+    @JsonIgnore()
     public Persona getPersona() {
         return persona;
     }
