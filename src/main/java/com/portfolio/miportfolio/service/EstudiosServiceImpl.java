@@ -29,8 +29,8 @@ public class EstudiosServiceImpl implements IEstudiosService {
     }
 
     @Override
-    public List<Estudio> findByIdUsuario(Long idUsuario) {
-        var persona = this.personaRepository.findById(idUsuario).get();
+    public List<Estudio> findByIdPersona(Long idPersona) {
+        var persona = this.personaRepository.findById(idPersona).get();
 
         return estudiosRepository.findByPersona(persona);
     }
