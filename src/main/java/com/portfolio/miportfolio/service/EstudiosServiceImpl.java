@@ -20,9 +20,6 @@ public class EstudiosServiceImpl implements IEstudiosService {
     private IEstudiosRepository estudiosRepository;
 
     @Autowired
-    private IUsuarioRepository usuarioRepository;
-
-    @Autowired
     private UsuarioService usuarioService;
 
     @Override
