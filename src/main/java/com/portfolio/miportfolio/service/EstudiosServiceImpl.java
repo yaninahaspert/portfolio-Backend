@@ -22,6 +22,9 @@ public class EstudiosServiceImpl implements IEstudiosService {
     @Autowired
     private IUsuarioRepository usuarioRepository;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @Override
     @Transactional
     public List<Estudio> findAll() {
@@ -44,11 +47,7 @@ public class EstudiosServiceImpl implements IEstudiosService {
     @Override
     @Transactional
     public Estudio save(Estudio estudio) {
-        var usuarioLogueado = (UsuarioPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        var usuario = this.usuarioRepository.findByNombreUsuario(usuarioLogueado.getUsername()).get();
-
-        estudio.setPersona(usuario.getPersona());
+        estudio.setPersona(this.usuarioService.getUsuarioLogueado().getPersona());
 
         return estudiosRepository.save(estudio);
     }
