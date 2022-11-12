@@ -2,8 +2,10 @@ package com.portfolio.miportfolio.controller;
 
 import com.portfolio.miportfolio.entity.Estudio;
 import com.portfolio.miportfolio.service.IEstudiosService;
+import com.portfolio.miportfolio.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +15,9 @@ import java.util.List;
 public class EstudiosRestController {
     @Autowired
     private IEstudiosService estudiosService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping("/estudios")
     public List<Estudio> index(@RequestParam(name = "id_usuario", required = true) String idUsuario) {
@@ -33,8 +38,12 @@ public class EstudiosRestController {
     @PutMapping("/estudios/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Estudio update(@RequestBody Estudio estudio, @PathVariable Long id) {
-
         Estudio estudioActual = estudiosService.findById(id);
+
+        var usuarioActual = this.usuarioService.getUsuarioLogueado();
+        if (usuarioActual == null || ! usuarioActual.getId().equals(estudioActual.getPersona().getUsuario().getId())) {
+            throw new AccessDeniedException("Acción no permitida");
+        }
 
         estudioActual.setCiudad(estudio.getCiudad());
         estudioActual.setDireccion(estudio.getDireccion());

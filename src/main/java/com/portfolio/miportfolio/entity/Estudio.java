@@ -123,6 +123,10 @@ public class Estudio implements Serializable {
         this.persona = persona;
     }
 
+    public Persona getPersona() {
+        return persona;
+    }
+
     private static final long serialVersion = 1L;
 
 }

@@ -111,6 +111,9 @@ public class Persona implements Serializable {
         this.usuario = usuario;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
     public void setListaRedes(List<Redes> listaRedes) {
         this.listaRedes = listaRedes;
