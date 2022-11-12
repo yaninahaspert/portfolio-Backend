@@ -20,8 +20,8 @@ public class EstudiosRestController {
     private UsuarioService usuarioService;
 
     @GetMapping("/estudios")
-    public List<Estudio> index(@RequestParam(name = "id_usuario", required = true) String idUsuario) {
-        return estudiosService.findByIdUsuario(Long.parseLong(idUsuario));
+    public List<Estudio> index(@RequestParam(name = "id_persona", required = true) String idPersona) {
+        return estudiosService.findByIdPersona(Long.parseLong(idPersona));
     }
 
     @GetMapping("/estudios/{id}")
