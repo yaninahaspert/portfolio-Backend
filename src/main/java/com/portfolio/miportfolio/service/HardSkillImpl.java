@@ -2,6 +2,7 @@ package com.portfolio.miportfolio.service;
 import com.portfolio.miportfolio.entity.Estudio;
 import com.portfolio.miportfolio.entity.HardSkill;
 import com.portfolio.miportfolio.repository.IHardSkillRepository;
+import com.portfolio.miportfolio.repository.IPersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +13,15 @@ public class HardSkillImpl implements IHardSkillService{
     @Autowired
     private IHardSkillRepository hardSkillRepository;
 
+    @Autowired
+    private IPersonaRepository personaRepository;
+
     @Override
     @Transactional
-    public List<HardSkill> findAll() {
-        return (List<HardSkill>) hardSkillRepository.findAll();
+    public List<HardSkill> findByIdPersona(Long idPersona) {
+        var persona = this.personaRepository.findById(idPersona).get();
+
+        return hardSkillRepository.findByPersona(persona);
     }
 
     @Override

@@ -10,7 +10,7 @@ public interface IEstudiosService {
     public List<Estudio> findAll();
 
     @Transactional
-    public List<Estudio> findByIdPersona(Long idUsuario);
+    public List<Estudio> findByIdPersona(Long idPersona);
 
     public Estudio findById(Long id);
 
