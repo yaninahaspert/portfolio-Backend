@@ -17,8 +17,8 @@ public class SoftSkillRestController {
     private ISoftSkillService softskillService;
 
     @GetMapping("/softskills")
-    public List<SoftSkill> index() {
-        return softskillService.findAll();
+    public List<SoftSkill> index(@RequestParam(name = "id_persona", required = true) String idPersona) {
+        return softskillService.findByIdPersona(Long.parseLong(idPersona));
     }
 
 

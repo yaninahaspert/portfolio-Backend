@@ -2,6 +2,7 @@ package com.portfolio.miportfolio.service;
 
 import com.portfolio.miportfolio.entity.Estudio;
 import com.portfolio.miportfolio.entity.Proyecto;
+import com.portfolio.miportfolio.repository.IPersonaRepository;
 import com.portfolio.miportfolio.repository.IProyectoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,18 @@ public class ProyectoServiceImpl implements IProyectoService{
         @Autowired
         private IProyectoRepository proyectoRepository;
 
+        @Autowired
+        private IPersonaRepository personaRepository;
+
+        @Autowired
+        private UsuarioService usuarioService;
+
         @Override
         @Transactional
-        public List<Proyecto> findAll() {
-            return (List<Proyecto>) proyectoRepository.findAll();
+        public List<Proyecto> findByIdPersona(Long idPersona) {
+                var persona = this.personaRepository.findById(idPersona).get();
+
+                return proyectoRepository.findByPersona(persona);
         }
         @Override
         @Transactional
@@ -28,6 +37,8 @@ public class ProyectoServiceImpl implements IProyectoService{
         @Override
         @Transactional
         public Proyecto save(Proyecto proyecto) {
+                proyecto.setPersona(this.usuarioService.getUsuarioLogueado().getPersona());
+
                 return proyectoRepository.save(proyecto);
         }
 

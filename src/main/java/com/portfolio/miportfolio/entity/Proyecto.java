@@ -63,6 +63,9 @@ public class Proyecto implements Serializable {
     public void setUrl(String url) {
         this.url = url;
     }
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
 
     private static final long serialVersion = 1L;
 

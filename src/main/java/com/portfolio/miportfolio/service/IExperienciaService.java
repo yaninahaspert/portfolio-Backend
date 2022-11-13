@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IExperienciaService {
     @Transactional
-    List<Experiencia> findAll();
+    List<Experiencia> findByIdPersona(Long idPersona);
 
     public Experiencia findById(Long id);
 
