@@ -2,8 +2,8 @@ package com.portfolio.miportfolio.controller;
 
 import com.portfolio.miportfolio.dto.JwtDto;
 import com.portfolio.miportfolio.dto.LoginUsuario;
+import com.portfolio.miportfolio.dto.Mensaje;
 import com.portfolio.miportfolio.dto.NuevoUsuario;
-import com.portfolio.miportfolio.entity.Rol;
 import com.portfolio.miportfolio.entity.Usuario;
 import com.portfolio.miportfolio.jwt.JwtProvider;
 import com.portfolio.miportfolio.security.RolNombre;

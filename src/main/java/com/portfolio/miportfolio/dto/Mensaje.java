@@ -1,4 +1,4 @@
-package com.portfolio.miportfolio.controller;
+package com.portfolio.miportfolio.dto;
 
 public class Mensaje {
     private String mensaje;
