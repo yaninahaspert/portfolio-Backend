@@ -15,8 +15,8 @@ public class HardSkillRestController {
     private IHardSkillService hardSkillService;
 
     @GetMapping("/hardskills")
-    public List<HardSkill> index() {
-        return hardSkillService.findAll();
+    public List<HardSkill> index(@RequestParam(name = "id_persona", required = true) String idPersona) {
+        return hardSkillService.findByIdPersona(Long.parseLong(idPersona));
     }
 
     @GetMapping("/hardskills/{id}")

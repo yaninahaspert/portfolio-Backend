@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IHardSkillService {
     @Transactional
-    List<HardSkill> findAll();
+    List<HardSkill> findByIdPersona(Long idPersona);
 
     public HardSkill findById(Long id);
 
