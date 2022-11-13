@@ -39,7 +39,7 @@ CREATE TABLE soft_skills (
                              id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
                              nombre varchar(255) NOT NULL,
                              porcentaje varchar (255) NOT NULL,
-                             id_persona int
+                             id_persona int NOT NULL
 );
 ALTER table soft_skills add constraint fk_id_soft_skills foreign key (id_persona)
     REFERENCES personas(id);
@@ -49,7 +49,7 @@ CREATE TABLE hard_skills (
                              id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
                              nombre varchar(255) NOT NULL,
                              porcentaje varchar (255) NOT NULL,
-                             id_persona int
+                             id_persona int NOT NULL
 );
 ALTER table hard_skills  add constraint fk_id_hard_skills foreign key (id_persona)
     REFERENCES personas(id);
@@ -61,7 +61,7 @@ CREATE TABLE proyectos (
                            nombre varchar(50) NOT NULL,
                            descripcion varchar (1000) NOT NULL,
                            url varchar (100) not null,
-                           id_persona int
+                           id_persona int NOT NULL
 );
 ALTER table proyectos add constraint fk_id_proyectos foreign key (id_persona)
     REFERENCES personas(id);
@@ -71,7 +71,7 @@ CREATE TABLE redes_sociales (
                                 id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
                                 nombre_red_social varchar(255) NOT NULL,
                                 url_red_social varchar(255) NOT NULL,
-                                id_persona int
+                                id_persona int NOT NULL
 );
 ALTER table redes_sociales  add constraint fk_id_redes_sociales foreign key (id_persona)
     REFERENCES personas(id);
@@ -84,7 +84,7 @@ CREATE TABLE experiencias_laborales (
                                         funciones varchar (1000)NOT NULL,
                                         puesto varchar(255)NOT NULL,
                                         es_trabajo_actual TINYINT NOT NULL,
-                                        id_persona int
+                                        id_persona int NOT NULL
 );
 
 ALTER table experiencias_laborales add constraint fk_id_experiencia_laboral foreign key (id_persona)

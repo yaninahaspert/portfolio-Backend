@@ -3,6 +3,7 @@ import com.portfolio.miportfolio.entity.Estudio;
 import com.portfolio.miportfolio.entity.HardSkill;
 import com.portfolio.miportfolio.repository.IHardSkillRepository;
 import com.portfolio.miportfolio.repository.IPersonaRepository;
+import com.portfolio.miportfolio.repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,9 @@ public class HardSkillImpl implements IHardSkillService{
 
     @Autowired
     private IPersonaRepository personaRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @Override
     @Transactional
@@ -33,6 +37,7 @@ public class HardSkillImpl implements IHardSkillService{
     @Override
     @Transactional
     public HardSkill save(HardSkill hardSkill) {
+        hardSkill.setPersona(this.usuarioService.getUsuarioLogueado().getPersona());
         return hardSkillRepository.save(hardSkill);
     }
 
