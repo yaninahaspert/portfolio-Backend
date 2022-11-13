@@ -16,8 +16,8 @@ public class ExperienciaRestController {
     private IExperienciaService experienciaService;
 
     @GetMapping("/experiencias")
-    public List<Experiencia> index() {
-        return experienciaService.findAll();
+    public List<Experiencia> index(@RequestParam(name = "id_persona", required = true) String idPersona) {
+        return experienciaService.findByIdPersona(Long.parseLong(idPersona));
     }
     @GetMapping("/experiencias/{id}")
     public Experiencia show(@PathVariable Long id) {

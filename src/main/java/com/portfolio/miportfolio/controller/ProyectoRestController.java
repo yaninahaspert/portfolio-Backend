@@ -15,8 +15,8 @@ public class ProyectoRestController {
     private IProyectoService proyectoService;
 
     @GetMapping("/proyectos")
-    public List<Proyecto> index() {
-        return proyectoService.findAll();
+    public List<Proyecto> index(@RequestParam(name = "id_persona", required = true) String idPersona) {
+        return proyectoService.findByIdPersona(Long.parseLong(idPersona));
     }
 
     @GetMapping("/proyectos/{id}")

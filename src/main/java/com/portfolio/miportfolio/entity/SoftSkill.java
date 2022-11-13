@@ -42,6 +42,9 @@ public class SoftSkill implements Serializable {
     public void setPorcentaje(String porcentaje) {
         Porcentaje = porcentaje;
     }
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
 
     private static final long serialVersion = 1L;
 

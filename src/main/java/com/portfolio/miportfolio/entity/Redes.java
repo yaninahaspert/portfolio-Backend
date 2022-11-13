@@ -45,6 +45,9 @@ public class Redes implements Serializable {
     public void setUrlRedSocial(String urlRedSocial) {
         this.urlRedSocial = urlRedSocial;
     }
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
 
     private static final long serialVersion = 1L;
 

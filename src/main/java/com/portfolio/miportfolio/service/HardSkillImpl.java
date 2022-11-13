@@ -1,9 +1,7 @@
 package com.portfolio.miportfolio.service;
-import com.portfolio.miportfolio.entity.Estudio;
 import com.portfolio.miportfolio.entity.HardSkill;
 import com.portfolio.miportfolio.repository.IHardSkillRepository;
 import com.portfolio.miportfolio.repository.IPersonaRepository;
-import com.portfolio.miportfolio.repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

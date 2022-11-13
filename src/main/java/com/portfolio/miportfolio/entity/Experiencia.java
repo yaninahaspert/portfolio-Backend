@@ -107,6 +107,9 @@ public class Experiencia implements Serializable {
     public void setEsTrabajoActual(boolean esTrabajoActual) {
         this.esTrabajoActual = esTrabajoActual;
     }
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
 
     private static final long serialVersion = 1L;
 
