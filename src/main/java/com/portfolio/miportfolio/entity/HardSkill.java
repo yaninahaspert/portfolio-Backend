@@ -1,5 +1,7 @@
 package com.portfolio.miportfolio.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -42,6 +44,7 @@ public class HardSkill implements Serializable {
         Porcentaje = porcentaje;
     }
 
+    @JsonIgnore()
     public void setPersona(Persona persona) {
         this.persona = persona;
     }

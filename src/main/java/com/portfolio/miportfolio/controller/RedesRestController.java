@@ -18,8 +18,8 @@ public class RedesRestController {
     private IRedesService redesService;
 
     @GetMapping("/redes")
-    public List<Redes> index() {
-        return redesService.findAll();
+    public List<Redes> index(@RequestParam(name = "id_persona", required = true) String idPersona) {
+        return redesService.findByIdPersona(Long.parseLong(idPersona));
     }
 
     @PostMapping("/redes")
