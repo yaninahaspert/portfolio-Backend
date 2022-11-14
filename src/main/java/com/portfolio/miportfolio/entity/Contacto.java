@@ -1,26 +1,28 @@
 package com.portfolio.miportfolio.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
-@Table( name= "proyectos")
-public class Proyecto implements Serializable {
+@Table(name = "contactos")
+public class Contacto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="url_imagen")
-    private String urlImagen;
 
     private String nombre;
 
-    private String descripcion;
+    private String asunto;
 
-    private String url;
+    private String email;
+
+    private String descripcion;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_persona", referencedColumnName = "id", nullable = false)
@@ -34,20 +36,28 @@ public class Proyecto implements Serializable {
         this.id = id;
     }
 
-    public String getUrlImagen() {
-        return urlImagen;
-    }
-
-    public void setUrlImagen(String urlImagen) {
-        this.urlImagen = urlImagen;
-    }
-
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getAsunto() {
+        return asunto;
+    }
+
+    public void setAsunto(String asunto) {
+        this.asunto = asunto;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getDescripcion() {
@@ -58,17 +68,13 @@ public class Proyecto implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     @JsonIgnore()
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public Persona getPersona() {
+        return persona;
     }
 
     private static final long serialVersion = 1L;

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IRedesService {
     @Transactional
-    List<Redes> findAll();
+    List<Redes> findByIdPersona(Long idPersona);
 
     public Redes findById(Long id);
 

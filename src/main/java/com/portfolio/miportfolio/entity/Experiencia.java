@@ -1,6 +1,7 @@
 package com.portfolio.miportfolio.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -107,6 +108,8 @@ public class Experiencia implements Serializable {
     public void setEsTrabajoActual(boolean esTrabajoActual) {
         this.esTrabajoActual = esTrabajoActual;
     }
+
+    @JsonIgnore()
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
