@@ -61,6 +61,13 @@ public class EstudiosRestController {
     @DeleteMapping("/estudios/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
+        Estudio estudioAEliminar = estudiosService.findById(id);
+
+        var usuarioActual = this.usuarioService.getUsuarioLogueado();
+        if (usuarioActual == null || ! usuarioActual.getId().equals(estudioAEliminar.getPersona().getUsuario().getId())) {
+            throw new AccessDeniedException("Acción no permitida");
+        }
+
         estudiosService.delete(id);
     }
 }
