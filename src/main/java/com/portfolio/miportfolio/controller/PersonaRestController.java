@@ -1,10 +1,11 @@
 package com.portfolio.miportfolio.controller;
 
 import com.portfolio.miportfolio.entity.Persona;
-import com.portfolio.miportfolio.repository.IPersonaRepository;
 import com.portfolio.miportfolio.service.IPersonaService;
+import com.portfolio.miportfolio.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
@@ -15,7 +16,7 @@ public class PersonaRestController {
     private IPersonaService personaService;
 
     @Autowired
-    private IPersonaRepository personaRepository;
+    private UsuarioService usuarioService;
 
     @GetMapping("/personas")
     public List<Persona> index() {
@@ -29,34 +30,34 @@ public class PersonaRestController {
 
     @PostMapping("/personas")
     @ResponseStatus(HttpStatus.CREATED)
-    public Persona create(@RequestBody Persona personaDTO) {
-        var personaPrevia = this.personaRepository.findTopByOrderByIdAsc();
+    public Persona create(@RequestBody Persona persona) {
+        var usuarioLogueado = this.usuarioService.getUsuarioLogueado();
 
-        Persona personaAGuardar;
-        if (personaPrevia == null) {
-            personaAGuardar = personaDTO;
-        } else {
-            personaAGuardar = personaPrevia;
-            personaAGuardar.setDescripcionCompleta(personaDTO.getDescripcionCompleta());
-            personaAGuardar.setNombre(personaDTO.getNombre());
-            personaAGuardar.setProfesion(personaDTO.getProfesion());
-            personaAGuardar.setDescripcionBreve(personaDTO.getDescripcionBreve());
+        if (usuarioLogueado == null || usuarioLogueado.getPersona() != null) {
+            throw new AccessDeniedException("Acción no permitida");
         }
 
-        return personaService.save(personaAGuardar);
+        persona.setUsuario(usuarioLogueado);
+
+        return personaService.save(persona);
     }
 
     @PutMapping("/personas/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Persona update(@RequestBody Persona persona, @PathVariable Long id) {
-        Persona personaActual = personaService.findById(id);
+        Persona personaAEditar = personaService.findById(id);
 
-        personaActual.setDescripcionCompleta(persona.getDescripcionCompleta());
-        personaActual.setNombre(persona.getNombre());
-        personaActual.setProfesion(persona.getProfesion());
-        personaActual.setDescripcionBreve(persona.getDescripcionBreve());
+        var usuarioActual = this.usuarioService.getUsuarioLogueado();
+        if (usuarioActual == null || ! usuarioActual.getId().equals(personaAEditar.getUsuario().getId())) {
+            throw new AccessDeniedException("Acción no permitida");
+        }
 
-        return personaService.save(personaActual);
+        personaAEditar.setDescripcionCompleta(persona.getDescripcionCompleta());
+        personaAEditar.setNombre(persona.getNombre());
+        personaAEditar.setProfesion(persona.getProfesion());
+        personaAEditar.setDescripcionBreve(persona.getDescripcionBreve());
+
+        return personaService.save(personaAEditar);
     }
 
     @DeleteMapping("/personas/{id}")
