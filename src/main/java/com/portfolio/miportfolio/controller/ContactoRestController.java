@@ -14,7 +14,7 @@ public class ContactoRestController {
     @Autowired
     private IContactoService contactoService;
 
-    @PostMapping("/contactos/{id}")
+    @PostMapping("/contactos")
     @ResponseStatus(HttpStatus.CREATED)
     public Contacto create(@RequestBody ContactoDTO contactoDTO) {
         return contactoService.save(contactoDTO);
