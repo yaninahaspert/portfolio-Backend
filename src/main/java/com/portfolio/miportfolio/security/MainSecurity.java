@@ -41,6 +41,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/personas", "/api/personas/**", "/api/estudios", "/api/estudios/", "/api/hardskills", "/api/softskills/","/api/hardskills/", "/api/softskills", "/api/experiencias/", "/api/experiencias", "/api/proyectos/", "/api/proyectos", "/api/redes/", "/api/redes").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/contactos/", "/api/contactos").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
