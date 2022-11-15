@@ -1,5 +1,6 @@
 package com.portfolio.miportfolio.service;
 
+import com.portfolio.miportfolio.entity.Experiencia;
 import com.portfolio.miportfolio.entity.Persona;
 import com.portfolio.miportfolio.repository.IPersonaRepository;
 import com.portfolio.miportfolio.repository.IUsuarioRepository;
@@ -13,9 +14,6 @@ import java.util.List;
 public class PersonaServiceImplementacion implements IPersonaService {
     @Autowired
     private IPersonaRepository personaRepository;
-
-    @Autowired
-    private IUsuarioRepository usuarioRepository;
 
     @Override
     @Transactional
@@ -32,10 +30,6 @@ public class PersonaServiceImplementacion implements IPersonaService {
     @Override
     @Transactional
     public Persona save(Persona persona) {
-        var usuario = this.usuarioRepository.findTopByOrderByIdAsc();
-
-        persona.setUsuario(usuario);
-
         return personaRepository.save(persona);
     }
 
