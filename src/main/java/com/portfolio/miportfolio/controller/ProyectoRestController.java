@@ -1,9 +1,12 @@
 package com.portfolio.miportfolio.controller;
 
+import com.portfolio.miportfolio.entity.Estudio;
 import com.portfolio.miportfolio.entity.Proyecto;
 import com.portfolio.miportfolio.service.IProyectoService;
+import com.portfolio.miportfolio.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +14,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class ProyectoRestController {
+    @Autowired
+    private UsuarioService usuarioService;
+
     @Autowired
     private IProyectoService proyectoService;
 
@@ -36,6 +42,11 @@ public class ProyectoRestController {
 
         Proyecto proyectoActual = proyectoService.findById(id);
 
+        var usuarioActual = this.usuarioService.getUsuarioLogueado();
+        if (usuarioActual == null || ! usuarioActual.getId().equals(proyectoActual.getPersona().getUsuario().getId())) {
+            throw new AccessDeniedException("Acción no permitida");
+        }
+
         proyectoActual.setNombre(proyecto.getNombre());
         proyectoActual.setDescripcion(proyecto.getDescripcion());
         proyectoActual.setUrl(proyecto.getUrl());
@@ -47,6 +58,13 @@ public class ProyectoRestController {
     @DeleteMapping("/proyectos/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
+
+        Proyecto proyectoAEliminar = proyectoService.findById(id);
+
+        var usuarioActual = this.usuarioService.getUsuarioLogueado();
+        if (usuarioActual == null || ! usuarioActual.getId().equals(proyectoAEliminar.getPersona().getUsuario().getId())) {
+            throw new AccessDeniedException("Acción no permitida");
+        }
         proyectoService.delete(id);
     }
 

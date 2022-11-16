@@ -1,10 +1,13 @@
 package com.portfolio.miportfolio.controller;
 
 import com.portfolio.miportfolio.entity.Estudio;
+import com.portfolio.miportfolio.entity.HardSkill;
 import com.portfolio.miportfolio.entity.SoftSkill;
 import com.portfolio.miportfolio.service.ISoftSkillService;
+import com.portfolio.miportfolio.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +16,10 @@ import java.util.List;
 @RequestMapping("/api")
 
 public class SoftSkillRestController {
+
+    @Autowired
+    private UsuarioService usuarioService;
+
     @Autowired
     private ISoftSkillService softskillService;
 
@@ -39,6 +46,11 @@ public class SoftSkillRestController {
 
         SoftSkill softSkill1Actual = softskillService.findById(id);
 
+        var usuarioActual = this.usuarioService.getUsuarioLogueado();
+        if (usuarioActual == null || ! usuarioActual.getId().equals(softSkill1Actual.getPersona().getUsuario().getId())) {
+            throw new AccessDeniedException("Acción no permitida");
+        }
+
         softSkill1Actual.setNombre(softSkill.getNombre());
         softSkill1Actual.setPorcentaje(softSkill.getPorcentaje());
 
@@ -48,6 +60,12 @@ public class SoftSkillRestController {
     @DeleteMapping("/softskills/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
+        SoftSkill softSkillAEliminar = softskillService.findById(id);
+
+        var usuarioActual = this.usuarioService.getUsuarioLogueado();
+        if (usuarioActual == null || ! usuarioActual.getId().equals(softSkillAEliminar.getPersona().getUsuario().getId())) {
+            throw new AccessDeniedException("Acción no permitida");
+        }
         softskillService.delete(id);
     }
 
