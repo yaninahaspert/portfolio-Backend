@@ -45,9 +45,13 @@ public class SoftSkill implements Serializable {
         Porcentaje = porcentaje;
     }
 
-    @JsonIgnore()
+
     public void setPersona(Persona persona) {
         this.persona = persona;
+    }
+    @JsonIgnore()
+    public Persona getPersona() {
+        return persona;
     }
 
     private static final long serialVersion = 1L;
