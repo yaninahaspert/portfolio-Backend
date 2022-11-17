@@ -1,6 +1,6 @@
 package com.portfolio.miportfolio.security;
 
-import com.portfolio.miportfolio.jwt.jwtTokenFilter;
+import com.portfolio.miportfolio.jwt.JWTTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,8 +26,8 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
     UserDetailsService userDetailsService;
 
     @Bean
-    public jwtTokenFilter JwtTokenFilter() {
-        return new jwtTokenFilter();
+    public JWTTokenFilter JwtTokenFilter() {
+        return new JWTTokenFilter();
     }
 
     @Bean
@@ -40,7 +40,8 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/personas", "/api/personas/", "/api/estudios", "/api/estudios/", "/api/hardskills", "/api/softskills/","/api/hardskills/", "/api/softskills", "/api/experiencias/", "/api/experiencias", "/api/proyectos/", "/api/proyectos", "/api/redes/", "/api/redes").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/personas", "/api/personas/**", "/api/estudios", "/api/estudios/", "/api/hardskills", "/api/softskills/","/api/hardskills/", "/api/softskills", "/api/experiencias/", "/api/experiencias", "/api/proyectos/", "/api/proyectos", "/api/redes/", "/api/redes").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/contactos/", "/api/contactos").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

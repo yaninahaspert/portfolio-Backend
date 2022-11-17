@@ -1,5 +1,7 @@
 package com.portfolio.miportfolio.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -117,6 +119,15 @@ public class Estudio implements Serializable {
 
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    @JsonIgnore()
+    public Persona getPersona() {
+        return persona;
     }
 
     private static final long serialVersion = 1L;

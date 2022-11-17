@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ISoftSkillService {
     @Transactional
-    List<SoftSkill> findAll();
+    List<SoftSkill> findByIdPersona(Long idPersona);
 
     public SoftSkill findById(Long id);
 

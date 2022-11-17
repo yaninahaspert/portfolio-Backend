@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IProyectoService {
     @Transactional
-    List<Proyecto> findAll();
+    List<Proyecto> findByIdPersona(Long idPersona);
 
     public Proyecto findById(Long id);
 

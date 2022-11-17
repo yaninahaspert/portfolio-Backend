@@ -1,5 +1,6 @@
 package com.portfolio.miportfolio.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -11,7 +12,6 @@ public class Persona implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     private String nombre;
 
@@ -111,6 +111,10 @@ public class Persona implements Serializable {
         this.usuario = usuario;
     }
 
+    @JsonIgnore()
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
     public void setListaRedes(List<Redes> listaRedes) {
         this.listaRedes = listaRedes;
