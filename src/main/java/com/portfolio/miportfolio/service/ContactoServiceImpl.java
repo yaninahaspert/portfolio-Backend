@@ -22,7 +22,7 @@ public class ContactoServiceImpl implements IContactoService {
     @Override
     @Transactional
     public Contacto save(ContactoDTO contactoDTO) {
-        Persona persona = this.personaRepository.findById(contactoDTO.getIdPersona()).get();
+        Persona persona = this.personaRepository.findById(contactoDTO.getId_persona()).get();
 
         Contacto contacto = new Contacto(
             contactoDTO.getNombre(),

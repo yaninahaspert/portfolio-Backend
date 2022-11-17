@@ -13,7 +13,7 @@ public class ContactoDTO implements Serializable  {
 
     private String descripcion;
 
-    private Long idPersona;
+    private Long id_persona;
 
     public String getNombre() {
         return nombre;
@@ -47,11 +47,11 @@ public class ContactoDTO implements Serializable  {
         this.descripcion = descripcion;
     }
 
-    public Long getIdPersona() {
-        return idPersona;
+    public void setId_persona(Long id_persona) {
+        this.id_persona = id_persona;
     }
 
-    public void setIdPersona(Long idPersona) {
-        this.idPersona = idPersona;
+    public Long getId_persona() {
+        return id_persona;
     }
 }
