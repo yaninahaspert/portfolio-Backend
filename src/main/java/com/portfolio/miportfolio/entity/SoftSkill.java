@@ -49,9 +49,14 @@ public class SoftSkill implements Serializable {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
+
     @JsonIgnore()
     public Persona getPersona() {
         return persona;
+    }
+
+    public Long getIdPersona() {
+        return this.getPersona().getId();
     }
 
     private static final long serialVersion = 1L;

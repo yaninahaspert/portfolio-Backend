@@ -52,6 +52,9 @@ public class HardSkill implements Serializable {
     public Persona getPersona() {
         return persona;
     }
+    public Long getIdPersona() {
+        return this.getPersona().getId();
+    }
 
     private static final long serialVersion = 1L;
 
