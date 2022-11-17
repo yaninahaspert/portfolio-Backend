@@ -1,6 +1,6 @@
 package com.portfolio.miportfolio.security;
 
-import com.portfolio.miportfolio.jwt.jwtTokenFilter;
+import com.portfolio.miportfolio.jwt.JWTTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,8 +26,8 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
     UserDetailsService userDetailsService;
 
     @Bean
-    public jwtTokenFilter JwtTokenFilter() {
-        return new jwtTokenFilter();
+    public JWTTokenFilter JwtTokenFilter() {
+        return new JWTTokenFilter();
     }
 
     @Bean
