@@ -63,6 +63,11 @@ public class PersonaRestController {
     @DeleteMapping("/personas/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
+        var usuarioActual = this.usuarioService.getUsuarioLogueado();
+        if (usuarioActual == null || ! usuarioActual.getPersona().getId().equals(id)) {
+            throw new AccessDeniedException("Acción no permitida");
+        }
+
         personaService.delete(id);
     }
 }

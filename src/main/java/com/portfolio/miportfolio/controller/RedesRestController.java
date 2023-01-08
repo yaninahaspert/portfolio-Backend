@@ -5,8 +5,10 @@ import com.portfolio.miportfolio.entity.Proyecto;
 import com.portfolio.miportfolio.entity.Redes;
 import com.portfolio.miportfolio.service.IProyectoService;
 import com.portfolio.miportfolio.service.IRedesService;
+import com.portfolio.miportfolio.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +18,9 @@ import java.util.List;
 public class RedesRestController {
     @Autowired
     private IRedesService redesService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping("/redes")
     public List<Redes> index(@RequestParam(name = "id_persona", required = true) String idPersona) {
@@ -38,18 +43,29 @@ public class RedesRestController {
     @PutMapping("/redes/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Redes update(@RequestBody Redes redes, @PathVariable Long id) {
+        Redes redAEditar = redesService.findById(id);
 
-        Redes redesActual = redesService.findById(id);
+        var usuarioActual = this.usuarioService.getUsuarioLogueado();
+        if (usuarioActual == null || ! usuarioActual.getId().equals(redAEditar.getPersona().getUsuario().getId())) {
+            throw new AccessDeniedException("Acción no permitida");
+        }
 
-        redesActual.setNombreRedSocial(redes.getNombreRedSocial());
-        redesActual.setUrlRedSocial(redes.getUrlRedSocial());
+        redAEditar.setNombreRedSocial(redes.getNombreRedSocial());
+        redAEditar.setUrlRedSocial(redes.getUrlRedSocial());
 
-        return redesService.save(redesActual);
+        return redesService.save(redAEditar);
     }
 
     @DeleteMapping("/redes/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
+        var redAEliminar = redesService.findById(id);
+
+        var usuarioActual = this.usuarioService.getUsuarioLogueado();
+        if (usuarioActual == null || ! usuarioActual.getId().equals(redAEliminar.getPersona().getUsuario().getId())) {
+            throw new AccessDeniedException("Acción no permitida");
+        }
+
         redesService.delete(id);
     }
 
