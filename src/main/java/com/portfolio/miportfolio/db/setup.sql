@@ -43,6 +43,7 @@ CREATE TABLE estudios (
                           telefono varchar(100),
                           ciudad varchar(100),
                           sitio_web varchar(100),
+                          duracion varchar(100) NOT NULL,
                           ano_inicio date NOT NULL,
                           ano_fin date,
                           id_persona int NOT NULL
