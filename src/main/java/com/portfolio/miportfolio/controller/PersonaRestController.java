@@ -56,6 +56,8 @@ public class PersonaRestController {
         personaAEditar.setNombre(persona.getNombre());
         personaAEditar.setProfesion(persona.getProfesion());
         personaAEditar.setDescripcionBreve(persona.getDescripcionBreve());
+        personaAEditar.setUrlFoto(persona.getUrlFoto());
+        personaAEditar.setUrlImagenPresentacion(persona.getUrlImagenPresentacion());
 
         return personaService.save(personaAEditar);
     }
