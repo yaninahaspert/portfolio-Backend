@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 @Table(name = "estudios")
@@ -33,9 +32,8 @@ public class Estudio implements Serializable {
 
     private String duracion;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "ano_fin")
-    private Date anoFin;
+    private int anoFin;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_persona", referencedColumnName = "id", nullable = false)
@@ -105,11 +103,11 @@ public class Estudio implements Serializable {
         this.duracion = duracion;
     }
 
-    public Date getAnoFin() {
+    public int getAnoFin() {
         return anoFin;
     }
 
-    public void setAnoFin(Date anoFin) {
+    public void setAnoFin(int anoFin) {
         this.anoFin = anoFin;
     }
 

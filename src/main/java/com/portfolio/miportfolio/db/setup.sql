@@ -37,15 +37,14 @@ CREATE TABLE usuarios_roles (
 CREATE TABLE estudios (
                           id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
                           url_logo varchar(255) NOT NULL,
-                          titulo varchar(100) NOT NULL,
+                          titulo varchar(255) NOT NULL,
                           nombre_institucion varchar (100) NOT NULL,
                           direccion varchar (100),
                           telefono varchar(100),
                           ciudad varchar(100),
                           sitio_web varchar(100),
                           duracion varchar(100) NOT NULL,
-                          ano_inicio date NOT NULL,
-                          ano_fin date,
+                          ano_fin INT NOT NULL,
                           id_persona int NOT NULL
 );
 ALTER table estudios add constraint fk_id_estudios foreign key (id_persona)
