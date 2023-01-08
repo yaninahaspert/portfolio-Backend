@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 
 @RestController
@@ -78,7 +79,7 @@ public class Authcontroller {
         String jwt = jwtProvider.generateToken(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         var usuario = this.usuarioService.getByNombreUsuario(userDetails.getUsername()).get();
-        JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities(), usuario.getPersona().getId());
+        JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities(), usuario.getPersona() != null ? usuario.getPersona().getId() : usuario.getId());
         return new ResponseEntity(jwtDto, HttpStatus.OK);
     }
 }
