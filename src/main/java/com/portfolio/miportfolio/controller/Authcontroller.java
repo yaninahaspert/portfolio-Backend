@@ -77,7 +77,8 @@ public class Authcontroller {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtProvider.generateToken(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+        var usuario = this.usuarioService.getByNombreUsuario(userDetails.getUsername()).get();
+        JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities(), usuario.getPersona().getId());
         return new ResponseEntity(jwtDto, HttpStatus.OK);
     }
 }

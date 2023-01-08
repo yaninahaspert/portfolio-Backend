@@ -9,12 +9,14 @@ public class JwtDto {
     private String token;
     private String beader="Beader";
     private String nombreUsuario;
+    private Long personaId;
     private Collection <? extends GrantedAuthority> authorities;
 
-    public JwtDto(String token, String nombreUsuario, Collection<? extends GrantedAuthority> authorities) {
+    public JwtDto(String token, String nombreUsuario, Collection<? extends GrantedAuthority> authorities, Long personaId) {
         this.token = token;
         this.nombreUsuario = nombreUsuario;
         this.authorities = authorities;
+        this.personaId = personaId;
     }
 
     public String getToken() {
@@ -39,6 +41,10 @@ public class JwtDto {
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public Long getPersonaId() {
+        return personaId;
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
