@@ -17,10 +17,10 @@ public class Experiencia implements Serializable {
 
     private String empresa;
 
-    @JsonFormat(pattern="dd-MM-yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date inicio;
 
-    @JsonFormat(pattern="dd-MM-yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date fin;
 
     private String funciones;
