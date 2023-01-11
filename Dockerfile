@@ -1,6 +1,6 @@
 FROM amazoncorretto:19-alpine-jdk
 MAINTAINER yaninahaspert
 
-COPY target/NAME-YOUR-FILE-BUILD-SPRINGBOOT.jar NAME-YOUR-FILE-BUILD-SPRINGBOOT.jar
+COPY out/artifacts/miportfolio_jar/miportfolio.jar miportfolio.jar
 
-ENTRYPOINT ["java","-jar","/NAME-YOUR-FILE-BUILD-SPRINGBOOT.jar"]
+ENTRYPOINT ["java","-jar","/miportfolio.jar"]
